@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Vina+Sans&display=swap");
+
 :root {
     --color-primary: #1C1B1F;
     --color-secondary: #D9D9D9;
@@ -26,10 +28,17 @@ body {
     flex-direction: column;
     align-items: center;
     background-color: var(--color-gray-light);
-    background-image: url("./assets/Gradient.png");
+    background-image: url("/assets/Gradient.png");
     background-repeat: no-repeat;
     background-size: cover;
     margin: 1rem;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
 }
 
 .heading {
@@ -66,7 +75,7 @@ body {
 .search {
     border-radius: 0.5rem;
     border: 2px solid var(--color-gray-dark);
-    background-image: url(./assets/search.png);
+    background-image: url("/assets/search.png");
     background-repeat: no-repeat;
     background-position: left 0.5rem center;
     font-size: 1.5rem;
@@ -93,14 +102,14 @@ body {
 
 .h1 {
     font-size: 2.5rem;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
 }
 
 .string_cards {
     display: flex;
     flex-direction: row;
-    gap: 5rem;
-    margin-bottom: 2rem;
+    gap: 4rem;
+    margin-bottom: 3rem;
 }
 
 .card {
@@ -143,3 +152,8 @@ body {
     height: 1rem;
     width: 1rem;
 }
+
+.like_button:active {
+    filter: brightness(0) saturate(100%) invert(18%) sepia(93%) saturate(7481%) hue-rotate(-5deg) brightness(91%) contrast(60%);
+}
+
