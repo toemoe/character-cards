@@ -57,12 +57,16 @@ body {
 .favourite-btn {
     display: flex;
     cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
     font-size: 1.5rem;
     padding-left: 1.3rem;
     padding-right: 1.3rem;
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
     border-radius: 0.5rem;
+    min-width: 13.5rem;
 }
 
 .btn-picture {
@@ -98,6 +102,7 @@ body {
     padding: 5rem;
     border-radius: 2rem;
     margin-bottom: 4rem;
+    min-width: 66rem;
 }
 
 .h1 {
@@ -124,10 +129,13 @@ body {
 
 .close_button {
     position: absolute; 
-    width: 20px; /* Размер иконки */
+    width: 20px;
     height: 20px;
     left: 9rem;
-    cursor: pointer; /* Изменение курсора при наведении */
+    cursor: pointer;
+    object-fit: contain;
+    background-color: transparent;
+    border: none;
 }
 
 .character {
@@ -150,8 +158,8 @@ body {
     cursor: pointer;
     display: block;
     margin-top: 0.3rem;
-    width: 1rem;
-    height: 1rem;
+    width: 1.2rem;
+    height: 1.2rem;
     object-fit: contain;
     background-color: var(--color-secondary);
     border: none;
