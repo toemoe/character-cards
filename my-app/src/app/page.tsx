@@ -39,31 +39,42 @@ export default function Home() {
     char.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  return (
-    <main className="main">
-       <InfoModal />
-      <h1 className="heading">CHARACTER CARDS</h1>
+  const imageBasePath = '/character-cards/assets';
 
-      <div className="header">
-        <FavouriteButton />
-        <input type="text" className="search" placeholder="SEARCH" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
-      </div>
+return (
+  <main className="main">
+    <InfoModal />
+    <h1 className="heading">CHARACTER CARDS</h1>
 
-      <article className="container">
-        <h1 className="h1">DONT STARVE TOGETHER</h1>
+    <div className="header">
+      <FavouriteButton />
+      <input 
+        type="text" 
+        className="search" 
+        placeholder="SEARCH" 
+        value={searchTerm} 
+        onChange={(e) => setSearchTerm(e.target.value)} />
+    </div>
 
-        {filterChar.length === 0 ? (
-          <p className="not_found">CHARACTERS NOT FOUND</p>
-        ) : (
-          Array.from({ length: Math.ceil(filterChar.length / 4 ) }).map((_, rowIndex) => (
-            <div className="string_cards" key={rowIndex}>
-              {filterChar.slice(rowIndex * 4, rowIndex * 4 + 4).map((char) => (
-                <CharacterCard key={char.name} name={char.name} description={char.description} image={`/assets/${char.name}.webp`} />
+    <article className="container">
+      <h1 className="h1">DONT STARVE TOGETHER</h1>
+
+      {filterChar.length === 0 ? (
+        <p className="not_found">CHARACTERS NOT FOUND</p>
+      ) : (
+        Array.from({ length: Math.ceil(filterChar.length / 4) }).map((_, rowIndex) => (
+          <div className="string_cards" key={rowIndex}>
+            {filterChar.slice(rowIndex * 4, rowIndex * 4 + 4).map((char) => (
+              <CharacterCard 
+                key={char.name} 
+                name={char.name} 
+                description={char.description} 
+                image={`${imageBasePath}/${char.name}.webp`} />
               ))}
-            </div>
-          ))
-        )}
-      </article>
-    </main>
-  );
+          </div>
+        ))
+      )}
+    </article>
+  </main>
+);
 }
