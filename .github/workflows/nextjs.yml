@@ -25,6 +25,7 @@ jobs:
       - name: Detect package manager
         id: detect-package-manager
         run: |
+          echo "Current workspace: ${{ github.workspace }}"
           if [ -f "${{ github.workspace }}/test-spa/my-app/package.json" ]; then
             echo "manager=npm" >> $GITHUB_OUTPUT
             echo "command=ci" >> $GITHUB_OUTPUT
@@ -56,11 +57,15 @@ jobs:
             ${{ runner.os }}-nextjs-${{ hashFiles('test-spa/my-app/**/package-lock.json', 'test-spa/my-app/**/yarn.lock') }}-
 
       - name: Install dependencies
-        run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
+        run: |
+          echo "Running package manager: ${{ steps.detect-package-manager.outputs.manager }}"
+          ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
         working-directory: test-spa/my-app
 
       - name: Build with Next.js
-        run: ${{ steps.detect-package-manager.outputs.runner }} next build
+        run: |
+          echo "Running build with: ${{ steps.detect-package-manager.outputs.runner }}"
+          ${{ steps.detect-package-manager.outputs.runner }} next build
         working-directory: test-spa/my-app
 
       - name: Upload artifact
