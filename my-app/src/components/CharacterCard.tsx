@@ -11,7 +11,8 @@ interface Character {
     image: string;
 }
 
-export default function CharacterCard({ name, description, image }: Character) {
+export default function CharacterCard({ name, description }: Character) {
+
     const isLiked = useLikeStore((state) => state.charLike.includes(name));
     const toggleLike = useLikeStore((state) => state.toggleLike);
 
@@ -24,13 +25,13 @@ export default function CharacterCard({ name, description, image }: Character) {
 
     return (
         <div className="card" onClick={() => openInfo({ name, description })}>
-            <Image src={image} alt={name} className="character" width={160} height={220} />
+            <Image src={`character-cards/assets/${name}.webp`} alt={name} className="character" width={160} height={220} />
 
             <button className="close_button" onClick={(event) => {
                 event.stopPropagation();
                 toggleControl(name);
                 }}>
-                <Image src="/assets/close.png" alt="close" width={20} height={20} />
+                <Image src="/character-cards/assets/close.png" alt="close" width={20} height={20} />
             </button>
 
             <div className="info">
@@ -38,7 +39,7 @@ export default function CharacterCard({ name, description, image }: Character) {
                     event.stopPropagation();
                     toggleLike(name);
                 }}> 
-                    <Image src={isLiked ? "/assets/active_like.png" : "/assets/like.png"} alt="like" width={19} height={19} />
+                    <Image src={isLiked ? "/character-cards/assets/active_like.png" : "/character-cards/assets/like.png"} alt="like" width={19} height={19} />
                 </button>
                 <p className="name">{name}</p>
             </div>

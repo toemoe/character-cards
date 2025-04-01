@@ -1,8 +1,10 @@
 const nextConfig = {
-  output: 'export',
-  images: { unoptimized: true },
-  basePath: '/character-cards',
-  assetPrefix: '/character-cards',
+  output: "export",
+  reactStrictMode: true,
+  basePath: "/character-cards",
+  images: {
+    unoptimized: true,
+  }
 };
 
 export default nextConfig;

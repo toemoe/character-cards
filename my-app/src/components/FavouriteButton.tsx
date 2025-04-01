@@ -9,7 +9,7 @@ export default function FavouriteButton() {
 
     return (
         <button className="favourite-btn" onClick={toggleShowFavourite}>
-            <Image src="/assets/heart_broken.png" alt="heart" className="btn-picture" width={19} height={19} />
+            <Image src="/character-cards/assets/heart_broken.png" alt="heart" className="btn-picture" width={21} height={21} />
             {showFavourite ? "ALL CHARACTERS" : "FAV CHARACTERS"}
         </button>
     );
