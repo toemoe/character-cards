@@ -5,7 +5,6 @@ import { useInfoStore } from "@/store/InfoStore";
 export default function InfoModal() {
     const { selectedChar, isOpen, closeInfo } = useInfoStore();
 
-
     if (!selectedChar || !isOpen) return null;
 
     return (

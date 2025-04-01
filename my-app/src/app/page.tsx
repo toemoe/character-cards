@@ -33,13 +33,11 @@ export default function Home() {
   const showFavourite = useFavouriteStore((state) => state.showFavourite);
 
   const [searchTerm, setSearchTerm] = useState("");
-
   const displayChar = showFavourite ? characters.filter((char) => likedChar.includes(char.name)) : characters;
 
   const filterChar = displayChar.filter((char) =>
     char.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
-  
 
   return (
     <main className="main">
