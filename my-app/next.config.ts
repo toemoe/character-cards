@@ -4,6 +4,9 @@ const nextConfig = {
   assetPrefix: '/character-cards/',
   images: {
     unoptimized: true,
+  },
+  experimental: {
+    appDir: true,
   }
 };
 
