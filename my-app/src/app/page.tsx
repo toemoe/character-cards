@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { useLikeStore } from "@/store/LikeStore";
 import { useFavouriteStore } from "@/store/FavouriteStore";
 import CharacterCard from "@/components/CharacterCard"
@@ -17,12 +18,28 @@ export default function Home() {
     {name: "Willow", description: "Willow always regarded being brought to The Constant as a new beginning. It allowed her to leave everything behind, after all. From a young age, Willow seemed to possess a knack for attracting bad luck. Orphaned at a young age and forced to live in a children's home with cruel caregivers, she soon found her nights plagued by shadowy visions of terrible creatures... creatures that could only be held at bay by her faithful teddy bear Bernie. But when Bernie was taken away as punishment for what her caregivers saw as unfit behavior, Willow was left to fend for herself when the shadows came for her. That's when she learned that nothing holds back the darkness like a roaring flame. Nothing is more comforting than watching your troubles light up and crumble to ash... It wouldn't be the last time Willow burned it all down to start anew." },
     {name: "Wagstaff", description: "The radio is a Voxola PR-76, manufactured in 1919 by the Voxola Radio company of Sidney, Ohio. The radio offered revolutionary sound and reception quality for the time, and was promoted by an intense national marketing campaign. Very few units were actually produced, because the factory was destroyed in a fire only days after production began. Voxola founder Robert Wagstaff went missing the night of the fire, and the company declared bankruptcy soon thereafter." },
     {name: "Wickerbottom", description: "When people meet Ms. Wickerbottom, most assume that what you see is what you get. She certainly looks every bit the typical librarian that she claims to be, as at home amongst the bookstacks as any creature in their native habitat. Nobody would raise an eyebrow at such a person being well-versed in a wide range of subjects. Who would spare a second thought if, upon further inquiry, her knowledge rivaled that of experts? And obviously, no one would think of questioning what a librarian might be involved in after hours, when the library doors are closed to the public..." },
+    {name: "Wes", description: "Despite a life plagued by terrible luck, Wes has never been one to utter so much as a word of complaint. Rather than dwell on his own troubles, he has instead dedicated his life to making others smile... even if it's at his own expense. His journey to the Constant itself was nothing if not a tragic comedy of errors. After a series of snowballing missteps, Wes found himself accidentally taking the place of a stranger caught in the grip of a shadowy portal bound for the Constant. His unexpected arrival infuriated the Nightmare King, who quickly exacted his vengeance on the poor mime for interfering with his plans. Wes was banished to his own private prison, far from sight, where he would remain until he was rescued by the Constant's other Survivors being the kind soul that he is, Wes holds no grudge against Maxwell... though he does continue to give him the silent treatment. Had Wes known what fate awaited him on his last day on Earth, he likely wouldn't have done anything differently. In truth, there is a part of him that is happy to be in the Constant with the other Survivors - for who could be in greater need of cheering up than those poor souls?" },
+    {name: "Woodie", description: "Hailing from the pine-covered mountains of the great white north, Woodie is an unassuming yet strangely mysterious man who keeps his past close to the vest (or in his case, the flannel). He is never seen without his signature bushy beard or trusty axe Lucy, who herself is a bit of an enigma. The other Survivors are not quite sure whether Woodie is simply mad, or if there might be something else to the seemingly inanimate object. Sometimes they swear they can hear a jovial female voice speaking to Woodie when no one else is around..." },
+    {name: "Wolfgang", description: "Prior to his time in the Constant, Wolfgang's life revolved around one single-minded pursuit of one goal: to become the strongest man there ever was. His quest would lead him across Europe and eventually even across the Atlantic to America, where his feat of muscular prowess caught the attention of Misters Abernethy & Parker, who invited him to headline in their newly-formed traveling circus. Wolfgang quickly found himself caught up in the pageantry of circus life, and his attention began to shift to finding ways to make his show more spectacular. Fearing his own strength wouldn't be enough to keep impressing the crowds, he started employing a bit of stage trickery, with each new act becoming more unbelievable than the last. As his act grew more outlandish, the risk of being exposed as a fraud grew, and as he suffered one embarassing mistake after another his once unshakeable confidence in his abilities was slowly chipped away."},
+    {name: "Wormwood", description: "A green gem fell from the moon, landing on an ancient stone monument in the middle of overgrown rubble. Over a long period of time, a vine encircled the gem and eventually formed a humanoid figure sitting on the monument. The figure, Wormwood, opened his eyes and looked at his hands. He admired the tropical scenery, mimicking the flapping wings of the Butterflies with his leaf fingers. Trying to fit in, he imitated Parrots and Pogs, but he scared them off. Feeling downtrodden, he sat at the base of the monument and tucked himself under a nearby vine. He gave it a pat and smiled to himself. He went to sleep and bloomed along with the nearby plants while under the full moon."},
+    {name: "Warly", description: "Warly left a promising career as a sous chef in Paris to return home and care for his aging mother Angeline, whose memory had begun to deteriorate. His world soon revolved around telling her stories about her life, playing her favorite music, cooking the recipes she had taught him when he was young... all in the hopes of catching that spark of recognition in her eyes. As time went on and Angeline's moments of clarity became fewer and farther in-between, Warly became more desperate, willing to try anything to bring back his beloved Maman... That was when he first started hearing the voice on the radio."},
+    {name: "Woodlegs", description: "“Me pirate sense be tinglin'.”"},
+    {name: "Wilba", description: "”ADVENTURE LIE'ETH YONDER!”"},
+    {name: "Walani", description: "“I AM A FORCE TO BE RECKONED WITH!”"},
+    {name: "Wheeler", description: "“You haven't heard the last of Maybelle Dorothea Wheeler!”"}
   ];
 
   const likedChar = useLikeStore((state) => state.charLike);
   const showFavourite = useFavouriteStore((state) => state.showFavourite);
 
+  const [searchTerm, setSearchTerm] = useState("");
+
   const displayChar = showFavourite ? characters.filter((char) => likedChar.includes(char.name)) : characters;
+
+  const filterChar = displayChar.filter((char) =>
+    char.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+  
 
   return (
     <main className="main">
@@ -31,19 +48,23 @@ export default function Home() {
 
       <div className="header">
         <FavouriteButton />
-        <input type="text" className="search" placeholder="SEARCH" />
+        <input type="text" className="search" placeholder="SEARCH" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
       </div>
 
       <article className="container">
         <h1 className="h1">DONT STARVE TOGETHER</h1>
 
-        {Array.from({ length: Math.ceil(displayChar.length / 4 ) }).map((_, rowIndex) => (
-          <div className="string_cards" key={rowIndex}>
-            {displayChar.slice(rowIndex * 4, rowIndex * 4 + 4).map((char) => (
-              <CharacterCard key={char.name} name={char.name} description={char.description} image={`/assets/${char.name}.webp`} />
-            ))}
-          </div>
-        ))}
+        {filterChar.length === 0 ? (
+          <p className="not_found">CHARACTERS NOT FOUND</p>
+        ) : (
+          Array.from({ length: Math.ceil(filterChar.length / 4 ) }).map((_, rowIndex) => (
+            <div className="string_cards" key={rowIndex}>
+              {filterChar.slice(rowIndex * 4, rowIndex * 4 + 4).map((char) => (
+                <CharacterCard key={char.name} name={char.name} description={char.description} image={`/assets/${char.name}.webp`} />
+              ))}
+            </div>
+          ))
+        )}
       </article>
     </main>
   );

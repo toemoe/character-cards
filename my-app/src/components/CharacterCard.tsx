@@ -1,5 +1,6 @@
 "use client";
 
+import Image from 'next/image';
 import { useLikeStore } from "@/store/LikeStore";
 import { useControlStore } from "@/store/ControlStore";
 import { useInfoStore } from "@/store/InfoStore";
@@ -23,23 +24,21 @@ export default function CharacterCard({ name, description, image }: Character) {
 
     return (
         <div className="card" onClick={() => openInfo({ name, description })}>
-            <img src={image} alt={name} className="character" />
+            <Image src={image} alt={name} className="character" width={160} height={220} />
 
-            {/* Кнопка закрытия */}
             <button className="close_button" onClick={(event) => {
                 event.stopPropagation();
                 toggleControl(name);
                 }}>
-                <img src="/assets/close.png" alt="close" />
+                <Image src="/assets/close.png" alt="close" width={20} height={20} />
             </button>
 
             <div className="info">
-                {/* Кнопка лайка */}
                 <button className="like_button" onClick={(event) => {
                     event.stopPropagation();
                     toggleLike(name);
                 }}> 
-                    <img src={isLiked ? "/assets/active_like.png" : "/assets/like.png"} alt="like" />
+                    <Image src={isLiked ? "/assets/active_like.png" : "/assets/like.png"} alt="like" width={19} height={19} />
                 </button>
                 <p className="name">{name}</p>
             </div>
