@@ -26,7 +26,7 @@ jobs:
         id: detect-package-manager
         run: |
           echo "Current workspace: ${{ github.workspace }}"
-          if [ -f "${{ github.workspace }}/character-cards/my-app/package.json" ]; then
+          if [ -f "${{ github.workspace }}/my-app/package.json" ]; then
             echo "manager=npm" >> $GITHUB_OUTPUT
             echo "command=ci" >> $GITHUB_OUTPUT
             echo "runner=npx --no-install" >> $GITHUB_OUTPUT
