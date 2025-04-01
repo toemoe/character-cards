@@ -28,7 +28,7 @@ body {
     flex-direction: column;
     align-items: center;
     background-color: var(--color-gray-light);
-    background-image: url("/assets/Gradient.png");
+    background-image: url("/character-cards/assets/gradient.png");
     background-repeat: no-repeat;
     background-size: cover;
     margin: 1rem;
@@ -77,7 +77,7 @@ body {
 .search {
     border-radius: 0.5rem;
     border: 2px solid var(--color-gray-dark);
-    background-image: url("/assets/search.png");
+    background-image: url("/character-cards/assets/search.png");
     background-repeat: no-repeat;
     background-position: left 0.5rem center;
     font-size: 1.5rem;
