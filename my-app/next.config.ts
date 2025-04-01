@@ -1,8 +1,8 @@
-import type { NextConfig } from "next";
-
-const nextConfig: NextConfig = {
-  output: "export",
-  basePath: "/character-cards"
+const nextConfig = {
+  output: 'export',
+  images: { unoptimized: true },
+  basePath: '/character-cards',
+  assetPrefix: '/character-cards',
 };
 
 export default nextConfig;
