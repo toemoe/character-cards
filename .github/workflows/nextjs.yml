@@ -22,6 +22,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Check file structure
+        run: |
+          echo "Current workspace: ${{ github.workspace }}"
+          ls -R ${{ github.workspace }}
+
       - name: Detect package manager
         id: detect-package-manager
         run: |
@@ -51,16 +56,16 @@ jobs:
         uses: actions/cache@v4
         with:
           path: |
-            .next/cache
-          key: ${{ runner.os }}-nextjs-${{ hashFiles('/my-app/**/package-lock.json', 'character-cards/my-app/**/yarn.lock') }}-${{ hashFiles('character-cards/my-app/**.[jt]s', 'character-cards/my-app/**.[jt]sx') }}
+            my-app/.next/cache
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('my-app/package-lock.json', 'my-app/yarn.lock') }}-${{ hashFiles('my-app/**.[jt]s', 'my-app/**.[jt]sx') }}
           restore-keys: |
-            ${{ runner.os }}-nextjs-${{ hashFiles('/my-app/**/package-lock.json', 'character-cards/my-app/**/yarn.lock') }}-
+            ${{ runner.os }}-nextjs-${{ hashFiles('my-app/package-lock.json', 'my-app/yarn.lock') }}-
 
       - name: Install dependencies
         run: |
           echo "Running package manager: ${{ steps.detect-package-manager.outputs.manager }}"
           ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
-        working-directory: character-cards/my-app
+        working-directory: my-app
 
       - name: Build with Next.js
         run: |
