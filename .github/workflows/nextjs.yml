@@ -26,7 +26,7 @@ jobs:
         id: detect-package-manager
         run: |
           echo "Current workspace: ${{ github.workspace }}"
-          if [ -f "${{ github.workspace }}/test-spa/my-app/package.json" ]; then
+          if [ -f "${{ github.workspace }}/character-cards/my-app/package.json" ]; then
             echo "manager=npm" >> $GITHUB_OUTPUT
             echo "command=ci" >> $GITHUB_OUTPUT
             echo "runner=npx --no-install" >> $GITHUB_OUTPUT
@@ -52,26 +52,26 @@ jobs:
         with:
           path: |
             .next/cache
-          key: ${{ runner.os }}-nextjs-${{ hashFiles('test-spa/my-app/**/package-lock.json', 'test-spa/my-app/**/yarn.lock') }}-${{ hashFiles('test-spa/my-app/**.[jt]s', 'test-spa/my-app/**.[jt]sx') }}
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('character-cards/my-app/**/package-lock.json', 'character-cards/my-app/**/yarn.lock') }}-${{ hashFiles('character-cards/my-app/**.[jt]s', 'character-cards/my-app/**.[jt]sx') }}
           restore-keys: |
-            ${{ runner.os }}-nextjs-${{ hashFiles('test-spa/my-app/**/package-lock.json', 'test-spa/my-app/**/yarn.lock') }}-
+            ${{ runner.os }}-nextjs-${{ hashFiles('character-cards/my-app/**/package-lock.json', 'character-cards/my-app/**/yarn.lock') }}-
 
       - name: Install dependencies
         run: |
           echo "Running package manager: ${{ steps.detect-package-manager.outputs.manager }}"
           ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
-        working-directory: test-spa/my-app
+        working-directory: character-cards/my-app
 
       - name: Build with Next.js
         run: |
           echo "Running build with: ${{ steps.detect-package-manager.outputs.runner }}"
           ${{ steps.detect-package-manager.outputs.runner }} next build
-        working-directory: test-spa/my-app
+        working-directory: character-cards/my-app
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: test-spa/my-app/out
+          path: character-cards/my-app/out
 
   # Deployment job
   deploy:
