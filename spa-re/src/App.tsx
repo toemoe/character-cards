@@ -37,8 +37,6 @@ export default function App() {
     char.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  const imageBasePath = '/assets';
-
   return (
     <main className="main">
       <InfoModal />
@@ -67,8 +65,7 @@ export default function App() {
                 <CharacterCard 
                   key={char.name} 
                   name={char.name} 
-                  description={char.description} 
-                  image={`${imageBasePath}/${char.name}.webp`} 
+                  description={char.description}
                 />
               ))}
             </div>
