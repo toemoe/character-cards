@@ -1,5 +1,3 @@
-"use client";
-
 import { useLikeStore } from "../store/LikeStore";
 import { useControlStore } from "../store/ControlStore";
 import { useInfoStore } from "../store/InfoStore";
@@ -7,9 +5,10 @@ import { useInfoStore } from "../store/InfoStore";
 interface Character {
     name: string;
     description: string;
+    image?: string;
 }
 
-export default function CharacterCard({ name, description }: Character) {
+export default function CharacterCard({ name, description, image }: Character) {
     const isLiked = useLikeStore((state) => state.charLike.includes(name));
     const toggleLike = useLikeStore((state) => state.toggleLike);
     const isControl = useControlStore((state) => state.controlCards.has(name));
@@ -18,7 +17,7 @@ export default function CharacterCard({ name, description }: Character) {
 
     if (isControl) return null;
 
-    const characterImage = `/assets/${name}.webp`;
+    const characterImage = image || `/assets/${name}.webp`;
     const closeImage = '/assets/close.png';
     const likeImage = `/assets/${isLiked ? 'active_like' : 'like'}.png`;
 

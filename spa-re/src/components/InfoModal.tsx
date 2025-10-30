@@ -1,5 +1,3 @@
-"use client";
-
 import { useInfoStore } from "../store/InfoStore";
 
 export default function InfoModal() {

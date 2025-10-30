@@ -50,7 +50,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 8rem;
+    gap: 4rem;
     margin-bottom: 4rem;
 }
 
@@ -61,12 +61,12 @@ body {
     justify-content: center;
     text-align: center;
     font-size: 1.5rem;
-    padding-left: 1.3rem;
-    padding-right: 1.3rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
     border-radius: 0.5rem;
-    min-width: 13.5rem;
+    min-width: 10rem;
 }
 
 .btn-picture {
@@ -197,6 +197,37 @@ body {
     color: var(--color-primary);
 }
 
+.contentCreateCard {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    background-color: var(--color-gray-light);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    min-width: 19rem;
+    max-width: 32rem;
+    text-align: center;
+}
+
+.contentCreateCard form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.contentCreateCard form input {
+    height: 2rem;
+    border-radius: 0.3rem;
+    padding-left: 1rem;
+    border: none;
+}
+
+.contentCreateCard form button {
+    height: 2rem;
+    border-radius: 0.3rem;
+    border: 2px solid var(--color-gray-dark);
+}
+
 @media (max-width: 680px) {
     html {
         height: 100%;
@@ -222,7 +253,7 @@ body {
         justify-content: center;
         align-items: center;
         flex-direction: column;
-        gap: 2rem;
+        gap: 1rem;
         margin-left: 2rem;
         margin-right: 2rem;
     }

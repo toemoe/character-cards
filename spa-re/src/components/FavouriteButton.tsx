@@ -1,5 +1,3 @@
-"use client";
-
 import { useFavouriteStore } from "../store/FavouriteStore";
 
 export default function FavouriteButton() {
