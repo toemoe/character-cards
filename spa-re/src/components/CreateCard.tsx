@@ -45,9 +45,9 @@ const CreateCard = ({closeCreateCardModal, onCharacterCreate}: CreateCardProps) 
       <div className="contentCreateCard" onClick={(event) => event.stopPropagation()}>
           <h2>Card Creation</h2>
             <form onSubmit={handleSubmit}>
-                <input type="text" placeholder="Card Name" onChange={(e) => setFormData({...formData, name: e.target.value})}/>
-                <input type="text" placeholder="Card Description" onChange={(e) => setFormData({...formData, description: e.target.value})}/>
-                <input type="file" name="Image Card" onChange={handleImageChange} />
+                <input type="text" placeholder="Card Name" onChange={(e) => setFormData({...formData, name: e.target.value})} required/>
+                <input type="text" placeholder="Card Description" onChange={(e) => setFormData({...formData, description: e.target.value})} required/>
+                <input type="file" name="Image Card" onChange={handleImageChange} required/>
                 {previewUrl && (
                   <img src={previewUrl} alt="Preview" width="100" />
                 )}
